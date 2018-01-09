@@ -13,9 +13,9 @@ RUN groupadd mywebsitegroup
 RUN useradd mywebsiteuser -G mywebsitegroup
 
 RUN mkdir -p /var/projects/mywebsite
-WORKDIR /var/projects/doshi_backend
+WORKDIR /var/projects/mywebsite
 
-ADD requirements.txt /var/projects/doshi_backend/
+ADD requirements.txt /var/projects/mywebsite/
 RUN pip install -r requirements.txt
 
 EXPOSE 8002

@@ -12,6 +12,15 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
+# From: https://stackoverflow.com/a/4674143
+try:
+    from .secret_key import SECRET_KEY
+except ImportError:
+    SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__))
+    from .utils import generate_secret_key_file
+    generate_secret_key_file(os.path.join(SETTINGS_DIR, 'secret_key.py'))
+    from .secret_key import SECRET_KEY
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'r7!#w8)t8qyw#+&1%hv9_u#=9wrlcnhz0jk)@xk7kkj6ak1#mu'
+# SECRET_KEY = 'r7!#w8)t8qyw#+&1%hv9_u#=9wrlcnhz0jk)@xk7kkj6ak1#mu'
 
 
 ALLOWED_HOSTS = []

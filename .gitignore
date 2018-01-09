@@ -173,5 +173,7 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+secret_key.py
+
 # End of https://www.gitignore.io/api/django,python,pycharm+all
 
