@@ -4,10 +4,14 @@ RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y
 
-RUN apt-get -y install apt-utils \ 
-    && binutils libproj-dev postgresql-client \
-    && nano wget python-imaging \ 
-    && python-psycopg2 python3-lxml supervisor
+RUN apt-get install -y apt-utils
+
+RUN apt-get install -y binutils libproj-dev postgresql-client
+
+RUN apt-get install -y nano wget
+
+RUN apt-get install -y python-imaging python-psycopg2 python3-lxml
+
 
 RUN groupadd mywebsitegroup
 RUN useradd mywebsiteuser -G mywebsitegroup
@@ -17,5 +21,9 @@ WORKDIR /var/projects/mywebsite
 
 ADD requirements.txt /var/projects/mywebsite/
 RUN pip install -r requirements.txt
+
+ADD django-template.tar /var/projects/mywebsite
+
+CMD ["sh", "./.config/container_start.sh"]
 
 EXPOSE 8002
