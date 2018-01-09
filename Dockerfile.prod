@@ -1,0 +1,21 @@
+FROM python:3.6
+
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y
+
+RUN apt-get -y install apt-utils \ 
+    && binutils libproj-dev postgresql-client \
+    && nano wget python-imaging \ 
+    && python-psycopg2 python3-lxml supervisor
+
+RUN groupadd mywebsitegroup
+RUN useradd mywebsiteuser -G mywebsitegroup
+
+RUN mkdir -p /var/projects/mywebsite
+WORKDIR /var/projects/doshi_backend
+
+ADD requirements.txt /var/projects/doshi_backend/
+RUN pip install -r requirements.txt
+
+EXPOSE 8002
