@@ -16,6 +16,13 @@ RUN apt-get install -y python-imaging python-psycopg2 python3-lxml
 RUN groupadd mywebsitegroup
 RUN useradd mywebsiteuser -G mywebsitegroup
 
+####################################################
+# Install and configure supervisord
+####################################################
+RUN apt-get install -y supervisor
+RUN mkdir -p /var/log/supervisor
+ADD ./.config/supervisor_conf.d/mywebsite.conf /etc/supervisor/conf.d/mywebsite.conf
+
 RUN mkdir -p /var/projects/mywebsite
 WORKDIR /var/projects/mywebsite
 
