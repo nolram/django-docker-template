@@ -35,7 +35,7 @@ RUN pip install -r requirements.txt
 
 ADD django-template.tar /var/projects/mywebsite
 
-USER mywebsiteuser
+USER 1001
 CMD ["sh", "./.config/container_start.sh"]
 
 EXPOSE 8002
