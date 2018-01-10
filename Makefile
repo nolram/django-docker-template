@@ -51,8 +51,11 @@ app: prepare build clean
 
 pull:
 	docker pull $(NAME):$(TAG)
-	oc import-image django-template --from=$(NAME)
 	@$(PRINT_OK)
+
+update-oc:
+	oc import-image django-template --from=$(NAME)
+    @$(PRINT_OK)
 
 run:
 	docker run -p 80:8002 -d $(NAME):$(TAG)

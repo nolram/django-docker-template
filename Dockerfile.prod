@@ -21,8 +21,10 @@ RUN mkdir -p /var/run/mywebsite/ && chown -R mywebsiteuser /var/run/mywebsite/ &
 
 RUN apt-get install -y supervisor
 RUN mkdir -p /var/log/supervisor # && chown -R mywebsiteuser /var/log/supervisor/ && chmod -R u+rX /var/log/supervisor/
-# RUN groupadd supervisor
-# RUN usermod -a -G supervisor
+
+RUN groupadd supervisor
+RUN usermod -a -G supervisor
+
 ADD ./.config/supervisor_conf.d/mywebsite.conf /etc/supervisor/conf.d/mywebsite.conf
 # RUN chown -R mywebsiteuser /tmp/supervisor.sock
 
@@ -34,6 +36,7 @@ RUN pip install -r requirements.txt
 
 ADD django-template.tar /var/projects/mywebsite
 
+USER mywebsiteuser
 CMD ["sh", "./.config/container_start.sh"]
 
 EXPOSE 8002
