@@ -44,4 +44,4 @@ ADD django-template.tar /var/projects/mywebsite
 USER 1001
 CMD ["sh", "./.config/container_start.sh"]
 
-EXPOSE 8002
+EXPOSE 80

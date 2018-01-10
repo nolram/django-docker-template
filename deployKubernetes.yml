@@ -14,4 +14,4 @@ spec:
         image: nolram/django-template
         ports:
         - name: django-port
-          containerPort: 8002
+          containerPort: 80
