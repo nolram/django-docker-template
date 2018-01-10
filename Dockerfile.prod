@@ -15,8 +15,12 @@ RUN apt-get install -y python-imaging python-psycopg2 python3-lxml
 
 RUN groupadd mywebsitegroup
 RUN useradd mywebsiteuser -G mywebsitegroup
-RUN mkdir -p /var/log/mywebsite/ && chown -R mywebsiteuser /var/log/mywebsite/ && chmod -R u+rX /var/log/mywebsite/
-RUN mkdir -p /var/run/mywebsite/ && chown -R mywebsiteuser /var/run/mywebsite/ && chmod -R u+rX /var/run/mywebsite/
+
+# RUN mkdir -p /var/log/mywebsite/ && chown -R mywebsiteuser /var/log/mywebsite/ && chmod -R u+rX /var/log/mywebsite/
+RUN chgrp -R 0 /var/log/mywebsite/ && chmod -R g+rwX /var/log/mywebsite/
+
+# RUN mkdir -p /var/run/mywebsite/ && chown -R mywebsiteuser /var/run/mywebsite/ && chmod -R u+rX /var/run/mywebsite/
+RUN chgrp -R 0 /var/run/mywebsite/ && chmod -R g+rwX /var/run/mywebsite/
 
 
 RUN apt-get install -y supervisor
@@ -28,6 +32,7 @@ RUN chgrp -R 0 /var/log/supervisor && chmod -R g+rwX /var/log/supervisor
 
 
 RUN mkdir -p /var/projects/mywebsite
+RUN chgrp -R 0 /var/projects/mywebsite && chmod -R g+rwX /var/projects/mywebsite
 WORKDIR /var/projects/mywebsite
 
 ADD requirements.txt /var/projects/mywebsite/
