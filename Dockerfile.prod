@@ -21,7 +21,7 @@ RUN mkdir -p /var/run/mywebsite/ && chown -R mywebsiteuser /var/run/mywebsite/ &
 
 RUN apt-get install -y supervisor
 ADD ./.config/supervisor_conf.d/mywebsite.conf /etc/supervisor/conf.d/mywebsite.conf
-# RUN mkdir /var/log/supervisor
+RUN mkdir -p /var/log/supervisor && chmod -R u+rX /var/log/mywebsite/
 
 # RUN groupadd supervisor && useradd supervisor -g supervisor
 
