@@ -17,7 +17,7 @@ RUN groupadd mywebsitegroup
 RUN useradd mywebsiteuser -G mywebsitegroup
 
 # RUN mkdir -p /var/log/mywebsite/ && chown -R mywebsiteuser /var/log/mywebsite/ && chmod -R u+rX /var/log/mywebsite/
-RUN mkdir -p /var/log/mywebsite/ && chgrp -R 0 /var/log/mywebsite/ && chmod -R g+rwX /var/log/mywebsite/
+# RUN mkdir -p /var/log/mywebsite/ && chgrp -R 0 /var/log/mywebsite/ && chmod -R g+rwX /var/log/mywebsite/
 
 # RUN mkdir -p /var/run/mywebsite/ && chown -R mywebsiteuser /var/run/mywebsite/ && chmod -R u+rX /var/run/mywebsite/
 RUN mkdir -p /var/run/mywebsite/ && chgrp -R 0 /var/run/mywebsite/ && chmod -R g+rwX /var/run/mywebsite/
