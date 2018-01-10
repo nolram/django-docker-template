@@ -41,6 +41,8 @@ RUN pip install -r requirements.txt
 
 ADD django-template.tar /var/projects/mywebsite
 
+RUN mkdir -p /tmp
+
 USER 1001
 CMD ["sh", "./.config/container_start.sh"]
 
