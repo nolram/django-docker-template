@@ -30,6 +30,7 @@ RUN chgrp -R 0 /var/log/supervisor && chmod -R g+rwX /var/log/supervisor
 
 # RUN groupadd supervisor && useradd supervisor -g supervisor
 
+ADD ./.config/supervisor_conf.d/supervisor.conf /etc/supervisor/supervisord.conf
 
 RUN mkdir -p /var/projects/mywebsite
 RUN chgrp -R 0 /var/projects/mywebsite && chmod -R g+rwX /var/projects/mywebsite
