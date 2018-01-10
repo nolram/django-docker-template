@@ -20,7 +20,7 @@ RUN mkdir -p /var/run/mywebsite/ && chown -R mywebsiteuser /var/run/mywebsite/ &
 
 
 RUN apt-get install -y supervisor
-RUN mkdir -p /var/log/supervisor # && chown -R mywebsiteuser /var/log/supervisor/ && chmod -R u+rX /var/log/supervisor/
+RUN mkdir -p /var/log/supervisor && chown -R mywebsiteuser /var/log/supervisor/ && chmod -R u+rX /var/log/supervisor/
 
 RUN groupadd supervisor && useradd supervisor -g supervisor
 
