@@ -53,10 +53,6 @@ pull:
 	docker pull $(NAME):$(TAG)
 	@$(PRINT_OK)
 
-update-oc:
-	oc import-image django-template --from=$(NAME)
-    @$(PRINT_OK)
-
 run:
 	docker run -p 80:8002 -d $(NAME):$(TAG)
 	@$(PRINT_OK)
@@ -82,4 +78,8 @@ ip:
 
 delete_images:
 	docker rmi -f $$(docker images -q)
+	@$(PRINT_OK)
+
+oc:
+	oc import-image django-template --from=$(NAME)
 	@$(PRINT_OK)
