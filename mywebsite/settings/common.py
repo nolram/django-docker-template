@@ -12,28 +12,22 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
-# From: https://stackoverflow.com/a/4674143
-try:
-    from .secret_key import SECRET_KEY
-except ImportError:
-    SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__))
-    from .utils import generate_secret_key_file
-    generate_secret_key_file(os.path.join(SETTINGS_DIR, 'secret_key.py'))
-    from .secret_key import SECRET_KEY
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'r7!#w8)t8qyw#+&1%hv9_u#=9wrlcnhz0jk)@xk7kkj6ak1#mu'
-
+# The SECRET_KEY is provided via an environment variable in OpenShift
+# From: https://github.com/openshift/django-ex/blob/master/project/settings.py
+SECRET_KEY = os.getenv(
+    'DJANGO_SECRET_KEY',
+    # safe value used for development when DJANGO_SECRET_KEY might not be set
+    'r7!#w8)t8qyw#+&1%hv9_u#=9wrlcnhz0jk)@xk7kkj6ak1#mu'
+)
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -76,7 +70,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mywebsite.wsgi.application'
 
-
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -95,7 +88,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -108,9 +100,3 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
-
-STATIC_URL = '/static/'
