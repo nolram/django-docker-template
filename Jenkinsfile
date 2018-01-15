@@ -3,8 +3,8 @@ pipeline{
     stages {
         stage('Build'){
             steps{
-                sh 'echo hello world idjslfkjas'
-                sh 'make app'
+                bash 'echo hello world idjslfkjas'
+                bash 'make app'
             }
         }
     }
