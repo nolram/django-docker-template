@@ -3,8 +3,8 @@ pipeline{
     stages {
         stage('Build'){
             steps{
-                sh 'echo hello world idjslfkjas'
-                sh 'make app'
+                sh 'git archive -o django-template.tar HEAD'
+                sh 'docker build -t nolram/django-template:latest --rm -f Dockerfile.prod .'
             }
         }
     }
