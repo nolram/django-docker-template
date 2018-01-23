@@ -18,6 +18,6 @@ services:
       - POSTGRES_USER=mydbuser
       - POSTGRES_DB=mydb
       - ENV_DEV=true
-    volumes:
-      - .:/code:Z
-    command: ["./wait_for_postgres.sh", "/bin/bash", "./.dev/run_tests.sh"]
+    # volumes:
+    #   - .:/code:Z
+    command: ["./.dev/wait_for_postgres.sh", "/bin/bash", "./.dev/run_tests.sh"]
