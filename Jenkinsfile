@@ -1,6 +1,9 @@
 pipeline{
     agent any
     stages {
+        stage('Clone repository') {
+            checkout scm
+        }
         stage('Build'){
             steps{
                 sh 'git archive -o django-template.tar HEAD'
@@ -10,6 +13,13 @@ pipeline{
         stage('Test'){
             steps{
                 sh './run_docker_tests.sh'
+            }
+        }
+        stage('Pull Image'){
+            steps{
+                docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                    sh 'docker push nolram/django-template:latest'
+                }
             }
         }
     }
