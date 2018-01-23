@@ -20,4 +20,4 @@ services:
       - ENV_DEV=true
     volumes:
       - .:/code:Z
-    command: ["./.dev/wait_for_postgres.sh", "/bin/bash", "./.dev/run_web.sh"]
+    command: ["./wait_for_postgres.sh", "/bin/bash", "./.dev/run_tests.sh"]
