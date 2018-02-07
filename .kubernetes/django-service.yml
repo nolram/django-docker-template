@@ -10,4 +10,4 @@ spec:
     protocol: TCP
   selector:
     app: django-template
-  type: NodePort
+  type: LoadBalancer

@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: django-template
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: django-template
+    spec:
+      containers:
+      - name: django-template
+        image: nolram/django-template
+        ports:
+        - name: django-port
+          containerPort: 8002
+        env:
+          - name: POSTGRESQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secrets
+                key: db-password
+
+          - name: POSTGRESQL_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secrets
+                key: db-name
+
+          - name: POSTGRESQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secrets
+                key: db-user
+          
+          - name: POSTGRESQL_HOSTS
+            value: postgres-host

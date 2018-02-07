@@ -17,12 +17,12 @@ pipeline{
                 sh './run_docker_tests.sh'
             }
         }
-        stage('Pull Image'){
-            steps{
-                docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-                    sh 'docker push nolram/django-template:latest'
-                }
-            }
-        }
+        // stage('Pull Image'){
+        //     steps{
+        //         withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+        //             sh 'docker push nolram/django-template:latest'
+        //         }
+        //     }
+        // }
     }
 }
