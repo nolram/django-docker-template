@@ -175,6 +175,7 @@ venv.bak/
 
 secret_key.py
 postgres-secrets.yml
+manifest.yaml
 
 # End of https://www.gitignore.io/api/django,python,pycharm+all
 

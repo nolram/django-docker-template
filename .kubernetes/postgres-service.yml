@@ -7,5 +7,5 @@ spec:
   - port: 5432
     protocol: TCP
   selector:
-    app: postgres-host
+    app: django-db
   type: NodePort
