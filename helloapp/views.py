@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from django.views import View
 
-from helloapp.models import Contador
-
 class Index(View):
     template_name = 'pages/index.html'
 
