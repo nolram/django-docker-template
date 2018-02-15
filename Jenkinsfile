@@ -34,7 +34,8 @@ pipeline{
         stage('Pull Image'){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'docker-marlon-registry', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
+                    // sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
+                    sh 'docker login -u $USERNAME -p $PASSWORD'
                     sh 'docker push nolram/django-template:latest'
                 }
             }
